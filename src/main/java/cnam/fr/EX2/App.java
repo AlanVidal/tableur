@@ -19,7 +19,7 @@ public class App {
 		tab.afficher();
 		System.out.println("");
 		
-		tab.regex();
+		tab.regex("SOMME(A1;2)");
 
 
 	}

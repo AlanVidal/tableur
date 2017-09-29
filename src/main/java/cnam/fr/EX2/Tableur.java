@@ -31,6 +31,17 @@ public class Tableur {
 		tableau2D[x][ay] = new IdiotValue(ax, ay, aValue);
 	}
 
+	/**
+	 * Factoriser les surcharges
+	 * 
+	 * @param ax
+	 * @param ay
+	 * @param aValue
+	 * @param oax
+	 * @param oay
+	 * @param dax
+	 * @param day
+	 */
 	public void setCaseX(char ax, int ay, String aValue, char oax, int oay, char dax, int day) {
 		int x = alphab.get(ax);
 		int ox = alphab.get(oax);
@@ -55,6 +66,15 @@ public class Tableur {
 
 	}
 
+	/**
+	 * 
+	 * @param ax
+	 * @param ay
+	 * @param operator
+	 * @param oax
+	 * @param oay
+	 * @param aValue
+	 */
 	public void setCaseX(char ax, int ay, String operator, char oax, int oay, double aValue) {
 		int x = alphab.get(ax);
 		int ox = alphab.get(oax);
@@ -90,21 +110,15 @@ public class Tableur {
 		}
 
 	}
+	public void regex(String intstruction) {
 
-	public void regex() {
-		// Pattern pattern =
-		// Pattern.compile("([A-Z]\\(([A-Z])(([0-9]);([0-9])\\)))");
-		String intstruction;
-
-		Pattern pattern = Pattern.compile("(.+)\\(([A-Z])([0-9]);([0-9])\\)");
-		String form = "SOMME(A1;1)";
-		Matcher items = pattern.matcher(form);
-		while(items.find()) {
-			System.out.println(items.group());
+		Pattern pattern = Pattern.compile("([A-Z]+)\\(([A-Z])([0-9]);([0-9])\\)");
+		Matcher items = pattern.matcher(intstruction);
+		while (items.find()) {
 			System.out.println(items.group(1));
 			System.out.println(items.group(2));
 			System.out.println(items.group(3));
- 
+			System.out.println(items.group(4));
 
 		}
 	}
