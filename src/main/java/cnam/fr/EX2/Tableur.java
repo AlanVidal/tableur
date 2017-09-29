@@ -7,8 +7,11 @@ import java.util.regex.Pattern;
 
 import cnam.fr.EX2.CaseP.Case;
 import cnam.fr.EX2.CaseP.CaseMoins;
+import cnam.fr.EX2.CaseP.CaseMoinsDemi;
 import cnam.fr.EX2.CaseP.CaseMul;
+import cnam.fr.EX2.CaseP.CaseMulDemi;
 import cnam.fr.EX2.CaseP.CasePlus;
+import cnam.fr.EX2.CaseP.CasePlusDemi;
 import cnam.fr.EX2.CaseP.IdiotValue;
 
 public class Tableur {
@@ -60,13 +63,13 @@ public class Tableur {
 
 		switch (operator) {
 		case "SUM":
-			tableau2D[x][ay] = new IdiotValue(ax, ay, oCase.getValue() + aValue);
+			tableau2D[x][ay] = new CasePlusDemi(ax, ay, oCase, aValue);
 			break;
 		case "LESS":
-			tableau2D[x][ay] = new IdiotValue(ax, ay, oCase.getValue() - aValue);
+			tableau2D[x][ay] = new CaseMoinsDemi(ax, ay, oCase, aValue);
 			break;
 		case "MUL":
-			tableau2D[x][ay] = new IdiotValue(ax, ay, oCase.getValue() * aValue);
+			tableau2D[x][ay] = new CaseMulDemi(ax, ay, oCase, aValue);
 			break;
 		default:
 			break;
@@ -89,14 +92,21 @@ public class Tableur {
 	}
 
 	public void regex() {
-		//Pattern pattern = Pattern.compile("([A-Z]\\(([A-Z])(([0-9]);([0-9])\\)))");
+		// Pattern pattern =
+		// Pattern.compile("([A-Z]\\(([A-Z])(([0-9]);([0-9])\\)))");
 		String intstruction;
-		
-		Pattern pattern = Pattern.compile("(?)\\(([A-Z])([0-9]);[0-9]\\)");
-		String form = "SOMME(A1;1)";
-		String[] items = pattern.split(form);
-		System.out.println(items[0]);
 
+		Pattern pattern = Pattern.compile("(.+)\\(([A-Z])([0-9]);([0-9])\\)");
+		String form = "SOMME(A1;1)";
+		Matcher items = pattern.matcher(form);
+		while(items.find()) {
+			System.out.println(items.group());
+			System.out.println(items.group(1));
+			System.out.println(items.group(2));
+			System.out.println(items.group(3));
+ 
+
+		}
 	}
 
 }
